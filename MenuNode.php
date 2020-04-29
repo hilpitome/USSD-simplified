@@ -1,36 +1,32 @@
 <?php
-
-
+require_once ("menu_datas.php");
 class MenuNode
 {
-    public $id, $data, $childMenuNodes, $parentNode;
 
-    public function __construct($id, $data, $childMenuNodes, $parentNode)
+    public $id, $data, $parentNode;
+
+    public function __construct($id, $data,  $parentNode = null)
     {
         $this->id = $id;
         $this->data = $data;
-        $this->childMenuNodes = $childMenuNodes;
         $this->parentNode = $parentNode;
 
 
     }
     public function next($nextid){
         if ($nextid == 2){
-            $data2 ="Gender".PHP_EOL
-                ."1) M ".PHP_EOL
-                ."2) F".PHP_EOL;
-            $genderNode = new MenuNode(2,$data2, [], $this->getParentMenu() );
+            $genderNode = new MenuNode(2,data2, $this->getParentMenu() );
+            return $genderNode;
         }
         if ($nextid == 3){
-            $data3 ="Age".PHP_EOL
-                ."1) Below 18 ".PHP_EOL
-                ."2) Above 18".PHP_EOL;
-            $genderNode = new MenuNode(2,$data3, [], $this->getParentMenu() );
+            $ageNode = new MenuNode(2,data3, $this->getParentMenu() );
+            return $ageNode;
         }
     }
 
     public function getParentMenu(){
-        return new $this->parentNode;
+        echo $this->parentNode;
+        return $this->parentNode;
     }
 
 }
